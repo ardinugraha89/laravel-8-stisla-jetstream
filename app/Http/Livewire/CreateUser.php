@@ -16,7 +16,7 @@ class CreateUser extends Component
     protected function getRules()
     {
         $rules = ($this->action == "updateUser") ? [
-            'user.email' => 'required|email|unique:users,email,' . $this->userId
+            'user.nip' => 'required|digits:15|unique:users,nip,' . $this->userId
         ] : [
             'user.password' => 'required|min:8|confirmed',
             'user.password_confirmation' => 'required' // livewire need this
@@ -24,18 +24,18 @@ class CreateUser extends Component
 
         return array_merge([
             'user.name' => 'required|min:3',
-            'user.email' => 'required|email|unique:users,email'
+            'user.nip' => 'required|digits|unique:users,nip'
         ], $rules);
     }
 
-    public function createUser ()
+    public function createUser()
     {
         $this->resetErrorBag();
         $this->validate();
 
         $password = $this->user['password'];
 
-        if ( !empty($password) ) {
+        if (!empty($password)) {
             $this->user['password'] = Hash::make($password);
         }
 
@@ -45,7 +45,7 @@ class CreateUser extends Component
         $this->reset('user');
     }
 
-    public function updateUser ()
+    public function updateUser()
     {
         $this->resetErrorBag();
         $this->validate();
@@ -54,13 +54,13 @@ class CreateUser extends Component
             ->where('id', $this->userId)
             ->update([
                 "name" => $this->user->name,
-                "email" => $this->user->email,
+                "nip" => $this->user->nip,
             ]);
 
         $this->emit('saved');
     }
 
-    public function mount ()
+    public function mount()
     {
         if (!$this->user && $this->userId) {
             $this->user = User::find($this->userId);
