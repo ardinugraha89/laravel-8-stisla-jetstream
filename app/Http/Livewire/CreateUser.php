@@ -24,7 +24,7 @@ class CreateUser extends Component
 
         return array_merge([
             'user.name' => 'required|min:3',
-            'user.nip' => 'required|digits|unique:users,nip'
+            'user.nip' => 'required|digits:15|unique:users,nip'
         ], $rules);
     }
 

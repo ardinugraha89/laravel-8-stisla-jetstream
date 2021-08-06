@@ -43,15 +43,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -68,5 +59,10 @@ class User extends Authenticatable
         return empty($query) ? static::query()
             : static::where('name', 'like', '%' . $query . '%')
             ->orWhere('nip', 'like', '%' . $query . '%');
+    }
+
+    public function userDetail()
+    {
+        return $this->hasOne(UserDetail::class);
     }
 }

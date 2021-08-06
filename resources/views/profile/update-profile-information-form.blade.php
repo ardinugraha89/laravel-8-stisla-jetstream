@@ -59,12 +59,72 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
+         <!-- NIP -->
+         <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="nip" value="{{ __('Nomor Induk Pegawai') }}" />
+            <x-jet-input id="nip" type="text" class="mt-1 block w-full" wire:model.defer="state.nip" />
+            <x-jet-input-error for="nip" class="mt-2" />
+        </div>
+
+        <!-- NIK -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="nik" value="{{ __('Nomor Induk Kependudukan') }}" />
+            <x-jet-input id="nik" type="text" class="mt-1 block w-full" wire:model.defer="state.user_detail.nik" />
+            <x-jet-input-error for="nik" class="mt-2" />
+        </div>
+
+        <!-- NPWP -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="npwp" value="{{ __('NPWP') }}" />
+            <x-jet-input id="npwp" type="text" class="mt-1 block w-full" wire:model.defer="state.user_detail.npwp" />
+            <x-jet-input-error for="npwp" class="mt-2" />
+        </div>
+
+        <!-- Gender -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="jenis_kelamin" value="{{ __('Jenis Kelamin') }}" />
+            <select id="jenis_kelamin"  class="block mt-1 w-full" name="gender" wire:model.defer="state.user_detail.jenis_kelamin">
+                <option value="">
+                    -- Pilih Jenis Kelamin --
+                </option>
+                <option value="Laki-Laki" {{ $this->user->userDetail->jenis_kelamin== 'Laki-Laki' ? 'selected' : '' }} >
+                    Laki-Laki
+                </option>
+                <option value="Perempuan" {{ $this->user->userDetail->jenis_kelamin== 'Perempuan' ? 'selected' : '' }}>
+                    Perempuan
+                </option>
+
+            </select>
+            <x-jet-input-error for="jenis_kelamin" class="mt-2" />
+        </div> 
+
+        <!-- d.o.b. -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="dob" value="{{ __('Tempat/Tanggal Lahir') }}" />
+            <x-jet-input id="tempat_lahir" type="text" class="mt-1 block w-full" wire:model.defer="state.user_detail.tempat_lahir" /><x-jet-input-error for="tempat_lahir" class="mt-2" /> <input type="date" class="mt-1 block w-full" id="tanggal_lahir" wire:model.defer="state.user_detail.tanggal_lahir">
+            <x-jet-input-error for="tanggal_lahir" class="mt-2" />
+        </div> 
+
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.user_detail.email" />
             <x-jet-input-error for="email" class="mt-2" />
-        </div>
+        </div> 
+
+        <!-- Telepon -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="telepon" value="{{ __('Telepon') }}" />
+            <x-jet-input id="telepon" type="text" class="mt-1 block w-full" wire:model.defer="state.user_detail.telepon" />
+            <x-jet-input-error for="telepon" class="mt-2" />
+        </div> 
+
+        <!-- Alamat -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="alamat" value="{{ __('Alamat') }}" />
+            <x-jet-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="state.user_detail.alamat" />
+            <x-jet-input-error for="alamat" class="mt-2" />
+        </div> 
     </x-slot>
 
     <x-slot name="actions">

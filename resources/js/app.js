@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-function dataTableController (id) {
+function dataTableController(id) {
     return {
         id,
         deleteItem() {
@@ -21,7 +21,7 @@ function dataTableController (id) {
     }
 }
 
-function dataTableMainController () {
+function dataTableMainController() {
     return {
         setCallback() {
             Livewire.on('deleteResult', (result) => {
@@ -42,6 +42,9 @@ function dataTableMainController () {
         }
     }
 }
+
+import flatpckr from 'flatpickr';
+window.flatpckr = flatpckr('#tanggal_lahir');
 
 window.__controller = {
     dataTableController,
