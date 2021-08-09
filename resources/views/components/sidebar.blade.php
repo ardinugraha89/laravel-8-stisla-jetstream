@@ -18,6 +18,19 @@ $links = [
         "text" => "User",
         "is_multi" => true,
     ],
+    [
+        "href" => [
+            [
+                "section_text" => "Pendidikan",
+                "section_list" => [
+                    ["href" => "edu", "text" => "Data Pendidikan"],
+                    ["href" => "edu.new", "text" => "Tambah Data Pendidkan"]
+                ]
+            ]
+        ],
+        "text" => "Pendidikan",
+        "is_multi" => true,
+    ],
 ];
 $navigation_links = array_to_object($links);
 @endphp
