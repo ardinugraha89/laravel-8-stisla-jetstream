@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use Illuminate\Http\Request;
 
-class Education extends Controller
+class EducationController extends Controller
 {
     public function index_view()
     {
         return view('pages.edu.edu-data', [
-            'edu' => Edu::class
+            'edu' => Education::class
         ]);
     }
 }

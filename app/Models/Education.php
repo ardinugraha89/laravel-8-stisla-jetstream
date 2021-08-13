@@ -9,6 +9,7 @@ class Education extends Model
 {
     use HasFactory;
 
+    public $table = 'educations';
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +20,8 @@ class Education extends Model
         'jenjang_pendidikan',
         'nama',
         'tahun_lulus',
+        'ijazah_path',
+        'user_id',
     ];
 
     /**
@@ -26,7 +29,15 @@ class Education extends Model
      *
      * @var array
      */
-    protected $appends = [
-        'ijazah_url',
-    ];
+    // protected $appends = [
+    //     'ijazah_url',
+    // ];
+
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('tahun_lulus', 'like', '%' . $query . '%')
+            ->orWhere('nama', 'like', '%' . $query . '%')
+            ->orWhere('jenjang_pendidikan', 'like', '%' . $query . '%');
+    }
 }

@@ -87,10 +87,10 @@
                 <option value="">
                     -- Pilih Jenis Kelamin --
                 </option>
-                <option value="Laki-Laki" {{ $this->user->userDetail->jenis_kelamin== 'Laki-Laki' ? 'selected' : '' }} >
+                <option value="Laki-Laki">
                     Laki-Laki
                 </option>
-                <option value="Perempuan" {{ $this->user->userDetail->jenis_kelamin== 'Perempuan' ? 'selected' : '' }}>
+                <option value="Perempuan">
                     Perempuan
                 </option>
 

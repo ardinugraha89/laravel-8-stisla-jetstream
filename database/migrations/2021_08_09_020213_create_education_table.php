@@ -13,13 +13,13 @@ class CreateEducationTable extends Migration
      */
     public function up()
     {
-        Schema::create('education', function (Blueprint $table) {
+        Schema::create('educations', function (Blueprint $table) {
             $table->id();
             $table->string('jenjang_pendidikan');
             $table->string('nama');
             $table->string('tahun_lulus');
             $table->text('ijazah_path')->nullable();
-            $table->foreignId('user_id')->unique()->index()->constrained();
+            $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateEducationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('education');
+        Schema::dropIfExists('educations');
     }
 }

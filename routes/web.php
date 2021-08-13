@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Education;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,7 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::view('/user/new', "pages.user.user-new")->name('user.new');
     Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 
-    Route::get('/edu', [Education::class, "index_view"])->name('edu');
+    Route::get('/edu', [EducationController::class, "index_view"])->name('edu');
     Route::view('/edu/new', "pages.edu.edu-new")->name('edu.new');
-    Route::view('/edu/edit/{userId}', "pages.edu.edu-edit")->name('edu.edit');
+    Route::view('/edu/edit/{eduId}', "pages.edu.edu-edit")->name('edu.edit');
 });
