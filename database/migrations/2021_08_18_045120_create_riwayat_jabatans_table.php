@@ -15,6 +15,10 @@ class CreateRiwayatJabatansTable extends Migration
     {
         Schema::create('riwayat_jabatans', function (Blueprint $table) {
             $table->id();
+            $table->date('tmt');
+            $table->string('status');
+            $table->foreignId('jabatan_id')->index()->constrained();
+            $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });
     }

@@ -11,25 +11,34 @@
         <x-slot name="form">
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="jabatan" value="{{ __('Jabatan') }}" />
-                <x-jet-input id="jabatan" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="rj.jabatan" />
+                <select class="form-control" id="jabatan" name="jabatan" wire:model.defer="rj.jabatan">
+                    <option value="">
+                        -- Pilih Jabatan --
+                    </option>
+                    @foreach ($jabatan as $jbtn)
+                        <option value="{{ $jbtn->id }}">{{ $jbtn->nama }}</option>
+                    @endforeach
+                </select>
                 <x-jet-input-error for="rj.jabatan" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="tmt" value="{{ __('TMT') }}" />
-                <x-jet-input id="tmt" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="rj.tmt" />
+                <x-jet-input id="tmt" type="date" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="rj.tmt" />
                 <x-jet-input-error for="rj.tmt" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="skjabatan" value="{{ __('Upload SK Jabatan') }}" />
-                <x-jet-input id="skjabatan" type="file" accept="application/pdf" class="mt-1 block w-full form-control shadow-none" wire:model.defer="rj.skjabatan" />
+                <x-jet-input id="skjabatan" type="file" accept="application/pdf"
+                    class="mt-1 block w-full form-control shadow-none" wire:model.defer="rj.skjabatan" />
                 <x-jet-input-error for="rj.skjabatan" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="keterangan" value="{{ __('Keterangan') }}" />
-                <select id="keterangan"  class="block mt-1 w-full" name="keterangan" wire:model.defer="rj.keterangan">
+                <select id="keterangan" class="block mt-1 w-full" name="keterangan" wire:model.defer="rj.keterangan">
                     <option value="">
                         -- Pilih Keterangan --
                     </option>
@@ -38,7 +47,7 @@
                     </option>
                     <option value="SMP">
                         Promosi
-                    </option>   
+                    </option>
                 </select>
                 <x-jet-input-error for="rj.keterangan" class="mt-2" />
             </div>

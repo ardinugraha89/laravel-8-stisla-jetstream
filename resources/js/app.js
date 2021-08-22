@@ -46,6 +46,7 @@ function dataTableMainController() {
 import flatpckr from 'flatpickr';
 window.flatpckr = flatpckr('#tanggal_lahir');
 window.flatpckr = flatpckr('#tanggal_pelatihan');
+window.flatpckr = flatpckr('#tmt');
 
 window.__controller = {
     dataTableController,

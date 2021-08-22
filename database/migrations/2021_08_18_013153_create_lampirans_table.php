@@ -29,6 +29,6 @@ class CreateLampiransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lampirans');
+        Schema::dropIfExists('lampiran');
     }
 }

@@ -80,4 +80,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lampiran::class);
     }
+
+    /**
+     * Get all of the jabatan for the user.
+     */
+    public function riwayatJabatan()
+    {
+        return $this->morphToMany(RiwayatJabatan::class, 'assigned');
+    }
 }

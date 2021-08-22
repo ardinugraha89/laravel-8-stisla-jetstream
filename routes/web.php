@@ -5,6 +5,7 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\LampiranController;
 use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PelatihanController;
+use App\Http\Controllers\RiwayatJabatanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,8 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::get('/lampiran', [LampiranController::class, "index_view"])->name('lampiran');
     Route::view('/lampiran/new', "pages.lampiran.lampiran-new")->name('lampiran.new');
     Route::view('/lampiran/edit/{lampiranId}', "pages.lampiran.lampiran-edit")->name('lampiran.edit');
+
+    Route::get('/riwayat/jabatan', [RiwayatJabatanController::class, "index_view"])->name('jabatan.user');
+    Route::view('/riwayat/jabatan/new', "pages.riwayatjbt.riwayatjbt-new")->name('riwayatjbt.new');
+    Route::view('/riwayat/jabatan/edit/{riwayatjbtId}', "pages.riwayatjbt.riwayatjbt-edit")->name('riwayatjbt.edit');
 });

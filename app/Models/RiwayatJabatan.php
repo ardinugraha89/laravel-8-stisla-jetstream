@@ -9,7 +9,7 @@ class RiwayatJabatan extends Model
 {
     use HasFactory;
 
-    public $table = 'riwayatjabatan';
+    public $table = 'riwayat_jabatans';
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +19,7 @@ class RiwayatJabatan extends Model
     protected $fillable = [
         'jabatan_id',
         'user_id',
+        'tmt',
         'status',
     ];
 
@@ -30,5 +31,21 @@ class RiwayatJabatan extends Model
         return empty($query) ? static::query()
             : static::where('jabatan_id', 'like', '%' . $query . '%')
             ->orWhere('user_id', 'like', '%' . $query . '%');
+    }
+
+    /**
+     * Get all of the user that are assigned this jabatan.
+     */
+    public function users()
+    {
+        return $this->morphedByMany(User::class, 'assigned');
+    }
+
+    /**
+     * Get all of the jabatan that are assigned this user.
+     */
+    public function jabatan()
+    {
+        return $this->morphedByMany(Jabatan::class, 'assigned');
     }
 }
