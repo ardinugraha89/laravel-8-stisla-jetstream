@@ -70,4 +70,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Education::class);
     }
+
+    public function pelatihan()
+    {
+        return $this->hasMany(Pelatihan::class);
+    }
+
+    public function lampiran()
+    {
+        return $this->hasMany(Lampiran::class);
+    }
 }

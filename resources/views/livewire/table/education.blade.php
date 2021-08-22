@@ -32,7 +32,9 @@
                     <td>{{ $edu->jenjang_pendidikan }}</td>
                     <td>{{ $edu->nama }}</td>
                     <td>{{ $edu->tahun_lulus }}</td>
-                    <td>{{ $edu->ijazah_path}}</td>
+                    <td><x-jet-secondary-button wire:click="export('{{ $edu->ijazah_path }}')">
+                        {{ __('Download Ijazah') }}
+                    </x-jet-secondary-button></td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/edu/edit/{{ $edu->id }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>

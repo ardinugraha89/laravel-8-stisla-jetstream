@@ -1,4 +1,5 @@
 @php
+if(Auth::user()->is_admin){
 $links = [
     [
         "href" => "dashboard",
@@ -11,7 +12,11 @@ $links = [
                 "section_text" => "User",
                 "section_list" => [
                     ["href" => "user", "text" => "Data User"],
-                    ["href" => "user.new", "text" => "Buat User"]
+                    ["href" => "jabatan.user", "text" => "Info Jabatan"],
+                    ["href" => "jabatan.pangkat", "text" => "Info Pangkat"],
+                    ["href" => "user", "text" => "Catatan Mutasi"],
+                    ["href" => "lampiran", "text" => "Lampiran"],
+                    ["href" => "user.new", "text" => "Buat User"],
                 ]
             ]
         ],
@@ -24,14 +29,105 @@ $links = [
                 "section_text" => "Pendidikan",
                 "section_list" => [
                     ["href" => "edu", "text" => "Data Pendidikan"],
-                    ["href" => "edu.new", "text" => "Tambah Data Pendidkan"]
+                    ["href" => "edu.new", "text" => "Tambah Data Pendidikan"]
                 ]
             ]
         ],
         "text" => "Pendidikan",
         "is_multi" => true,
     ],
+    [
+        "href" => [
+            [
+                "section_text" => "Pelatihan/Diklat",
+                "section_list" => [
+                    ["href" => "pelatihan", "text" => "Data Pelatihan"],
+                    ["href" => "pelatihan.new", "text" => "Tambah Data Pelatihan"]
+                ]
+            ]
+        ],
+        "text" => "Pelatihan/Diklat",
+        "is_multi" => true,
+    ],
+    [
+        "href" => [
+            [
+                "section_text" => "Jabatan",
+                "section_list" => [
+                    ["href" => "jabatan", "text" => "Info Jabatan"],
+                    ["href" => "jabatan.new", "text" => "Tambah Data Jabatan"]
+                ]
+            ]
+        ],
+        "text" => "Jabatan",
+        "is_multi" => true,
+    ],
+    [
+        "href" => [
+            [
+                "section_text" => "Pangkat dan Golongan",
+                "section_list" => [
+                    ["href" => "pangkat", "text" => "Data Pangkat"],
+                    ["href" => "pangkat.new", "text" => "Tambah Data Pangkat"]
+                ]
+            ]
+        ],
+        "text" => "Pangkat dan Golongan",
+        "is_multi" => true,
+    ],
 ];
+}else{
+    $links = [
+    [
+        "href" => "dashboard",
+        "text" => "Dashboard",
+        "is_multi" => false,
+    ],
+    [
+        "href" => [
+            [
+                "section_text" => "User",
+                "section_list" => [
+                    ["href" => "user", "text" => "Data User"],
+                    ["href" => "jabatan.user", "text" => "Info Jabatan"],
+                    ["href" => "jabatan.pangkat", "text" => "Info Pangkat"],
+                    ["href" => "user", "text" => "Catatan Mutasi"],
+                    ["href" => "lampiran", "text" => "Lampiran"],
+                    ["href" => "user.new", "text" => "Buat User"],
+                ]
+            ]
+        ],
+        "text" => "User",
+        "is_multi" => true,
+    ],
+    [
+        "href" => [
+            [
+                "section_text" => "Pendidikan",
+                "section_list" => [
+                    ["href" => "edu", "text" => "Data Pendidikan"],
+                    ["href" => "edu.new", "text" => "Tambah Data Pendidikan"]
+                ]
+            ]
+        ],
+        "text" => "Pendidikan",
+        "is_multi" => true,
+    ],
+    [
+        "href" => [
+            [
+                "section_text" => "Pelatihan/Diklat",
+                "section_list" => [
+                    ["href" => "pelatihan", "text" => "Data Pelatihan"],
+                    ["href" => "pelatihan.new", "text" => "Tambah Data Pelatihan"]
+                ]
+            ]
+        ],
+        "text" => "Pelatihan/Diklat",
+        "is_multi" => true,
+    ],
+];
+}
 $navigation_links = array_to_object($links);
 @endphp
 

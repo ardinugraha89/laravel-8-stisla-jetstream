@@ -16,22 +16,22 @@
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="tanggal" value="{{ __('Tahun Lulus') }}" />
-                <x-jet-input id="tahun_lulus" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="edu.tahun_lulus" placeholder="ex: 1999"/>
-                <x-jet-input-error for="edu.tahun_lulus" class="mt-2" />
+                <x-jet-label for="tanggal_pelatihan" value="{{ __('Tanggal Pelatihan') }}" />
+                <input type="date" class="mt-1 block w-full" id="tanggal_pelatihan" wire:model.defer="pelatihan.tanggal_pelatihan">
+                <x-jet-input-error for="pelatihan.tanggal_pelatihan" class="mt-2" />
             </div>
-            @if ($action == "updateEducation")
+            @if ($action == "updatePelatihan")
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-secondary-button wire:click="export">
-                    {{ __('Download Ijazah') }}
+                    {{ __('Download Sertifikat') }}
                 </x-jet-secondary-button>
             </div>
             @endif
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="ijazah" value="{{ __('Upload Ijazah') }}" />
-                <x-jet-input id="ijazah" type="file" accept="application/pdf" class="mt-1 block w-full form-control shadow-none" wire:model.defer="edu.ijazah_path" />
-                <x-jet-input-error for="edu.ijazah_path" class="mt-2" />
+                <x-jet-label for="sertifikat" value="{{ __('Upload Sertifikat') }}" />
+                <x-jet-input id="sertifikat" type="file" accept="application/pdf" class="mt-1 block w-full form-control shadow-none" wire:model.defer="pelatihan.sertifikat" />
+                <x-jet-input-error for="pelatihan.sertifikat" class="mt-2" />
             </div>
 
         </x-slot>

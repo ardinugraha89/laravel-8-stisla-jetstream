@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\Education;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\LampiranController;
+use App\Http\Controllers\PangkatController;
+use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +33,20 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::get('/edu', [EducationController::class, "index_view"])->name('edu');
     Route::view('/edu/new', "pages.edu.edu-new")->name('edu.new');
     Route::view('/edu/edit/{eduId}', "pages.edu.edu-edit")->name('edu.edit');
+
+    Route::get('/pelatihan', [PelatihanController::class, "index_view"])->name('pelatihan');
+    Route::view('/pelatihan/new', "pages.pelatihan.pelatihan-new")->name('pelatihan.new');
+    Route::view('/pelatihan/edit/{pelatihanId}', "pages.pelatihan.pelatihan-edit")->name('pelatihan.edit');
+
+    Route::get('/jabatan', [JabatanController::class, "index_view"])->name('jabatan');
+    Route::view('/jabatan/new', "pages.jabatan.jabatan-new")->name('jabatan.new');
+    Route::view('/jabatan/edit/{jabatanId}', "pages.jabatan.jabatan-edit")->name('jabatan.edit');
+
+    Route::get('/pangkat', [PangkatController::class, "index_view"])->name('pangkat');
+    Route::view('/pangkat/new', "pages.pangkat.pangkat-new")->name('pangkat.new');
+    Route::view('/pangkat/edit/{pangkatId}', "pages.pangkat.pangkat-edit")->name('pangkat.edit');
+
+    Route::get('/lampiran', [LampiranController::class, "index_view"])->name('lampiran');
+    Route::view('/lampiran/new', "pages.lampiran.lampiran-new")->name('lampiran.new');
+    Route::view('/lampiran/edit/{lampiranId}', "pages.lampiran.lampiran-edit")->name('lampiran.edit');
 });

@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Education extends Model
+class Lampiran extends Model
 {
     use HasFactory;
-
-    public $table = 'educations';
+    public $table = 'lampiran';
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +16,8 @@ class Education extends Model
      * @var array
      */
     protected $fillable = [
-        'jenjang_pendidikan',
         'nama',
-        'tahun_lulus',
-        'ijazah_path',
+        'dokumen',
         'user_id',
     ];
 
@@ -36,9 +33,7 @@ class Education extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('tahun_lulus', 'like', '%' . $query . '%')
-            ->orWhere('nama', 'like', '%' . $query . '%')
-            ->orWhere('jenjang_pendidikan', 'like', '%' . $query . '%');
+            : static::where('nama', 'like', '%' . $query . '%');
     }
 
     public function user()

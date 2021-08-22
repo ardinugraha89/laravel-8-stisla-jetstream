@@ -14,8 +14,7 @@ class AddEducation extends Component
     public $edu;
     public $eduId;
     public $button;
-
-
+    public $filepath;
 
     protected function rules()
     {
@@ -47,7 +46,7 @@ class AddEducation extends Component
         $this->validate();
 
         $this->edu['user_id'] = auth()->user()->id;
-        $this->edu['ijazah_path'] = $this->edu['ijazah_path']->storeAs('ijazah', auth()->user()->nip . '_' . $this->edu['jenjang_pendidikan'] . '.pdf');
+        $this->edu['ijazah_path'] = $this->edu['ijazah_path']->storeAs('ijazah', auth()->user()->nip . $this->edu['jenjang_pendidikan'] . '.pdf');
 
         Education::create($this->edu);
 
@@ -61,7 +60,7 @@ class AddEducation extends Component
         $this->validate();
 
         if (isset($this->edu['ijazah_path'])) {
-            $this->edu['ijazah_path'] = $this->edu['ijazah_path']->storeAs('ijazah', auth()->user()->nip . '_' . $this->edu['jenjang_pendidikan'] . '.pdf');
+            $this->edu['ijazah_path'] = $this->edu['ijazah_path']->storeAs('ijazah', auth()->user()->nip . $this->edu['jenjang_pendidikan'] . '.pdf');
         }
         Education::query()
             ->where('id', $this->eduId)
@@ -72,7 +71,7 @@ class AddEducation extends Component
 
     public function export()
     {
-        return response()->download(storage_path('app/' . $this->edu->ijazah_path));
+        return response()->download(storage_path('app/' . $this->filepath));
     }
 
     public function mount()
@@ -82,6 +81,7 @@ class AddEducation extends Component
             $this->edu['jenjang_pendidikan'] = $education->jenjang_pendidikan;
             $this->edu['nama'] = $education->nama;
             $this->edu['tahun_lulus'] = $education->tahun_lulus;
+            $this->filepath = $education->ijazah_path;
         }
 
         $this->button = create_button($this->action, "Education");
