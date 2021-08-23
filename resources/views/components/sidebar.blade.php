@@ -10,7 +10,7 @@ if (Auth::user()->is_admin) {
             'href' => [
                 [
                     'section_text' => 'User',
-                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'riwayatjbt.new', 'text' => 'Info Jabatan'], ['href' => 'jabatan', 'text' => 'Info Pangkat'], ['href' => 'user', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran'], ['href' => 'user.new', 'text' => 'Buat User']],
+                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'pangkat.user', 'text' => 'Info Pangkat'], ['href' => 'user', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran'], ['href' => 'user.new', 'text' => 'Buat User']],
                 ],
             ],
             'text' => 'User',
@@ -68,7 +68,7 @@ if (Auth::user()->is_admin) {
             'href' => [
                 [
                     'section_text' => 'User',
-                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'jabatan', 'text' => 'Info Pangkat'], ['href' => 'user', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran'], ['href' => 'user.new', 'text' => 'Buat User']],
+                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'pangkat.user', 'text' => 'Info Pangkat'], ['href' => 'user', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran']],
                 ],
             ],
             'text' => 'User',

@@ -88,4 +88,12 @@ class User extends Authenticatable
     {
         return $this->morphToMany(RiwayatJabatan::class, 'assigned');
     }
+
+    /**
+     * Get all of the pangkat for the user.
+     */
+    public function riwayatPangkat()
+    {
+        return $this->morphToMany(RiwayatPangkat::class, 'assigned');
+    }
 }

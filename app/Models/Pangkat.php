@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pangkat extends Model
 {
     use HasFactory;
-    public $table = 'pangkat';
+    public $table = 'pangkats';
 
     /**
      * The attributes that are mass assignable.
@@ -28,5 +28,13 @@ class Pangkat extends Model
         return empty($query) ? static::query()
             : static::where('nama', 'like', '%' . $query . '%')
             ->orWhere('golongan', 'like', '%' . $query . '%');
+    }
+
+    /**
+     * Get all of the user for the pangkat.
+     */
+    public function riwayatPangkat()
+    {
+        return $this->morphToMany(RiwayatPangkat::class, 'assigned');
     }
 }

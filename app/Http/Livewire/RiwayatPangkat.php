@@ -2,23 +2,22 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Jabatan;
-use App\Models\RiwayatJabatan as ModelsRiwayatJabatan;
+use App\Models\Pangkat;
+use App\Models\RiwayatPangkat as ModelsRiwayatPangkat;
 use Livewire\Component;
 
-class RiwayatJabatan extends Component
+class RiwayatPangkat extends Component
 {
-    public $riwayatjbt;
-    public $riwayatjbtId;
+    public $riwayatpkt;
+    public $riwayatpktId;
     public $action;
     public $button;
     protected function rules()
     {
         return  [
-            'rj.jabatan' => 'required|string',
+            'rj.pangkat' => 'required|string',
             'rj.tmt' => 'required|string',
             'rj.skjabatan' => 'required|mimes:pdf|max:500',
-            'rj.keterangan' => 'required|string',
         ];
     }
 
@@ -32,36 +31,34 @@ class RiwayatJabatan extends Component
         $this->resetErrorBag();
         $this->validate();
 
-        ModelsRiwayatJabatan::create($this->rj);
+        ModelsRiwayatPangkat::create($this->rj);
 
         $this->emit('saved');
         $this->reset('rj');
     }
 
-    public function updateRiwayatJabatan()
+    public function updateRiwayatPangkat()
     {
         $this->resetErrorBag();
         $this->validate();
 
-        ModelsRiwayatJabatan::query()
-            ->where('id', $this->riwayatjbtId)
+        ModelsRiwayatPangkat::query()
+            ->where('id', $this->riwayatpktId)
             ->update($this->rj);
 
         $this->emit('saved');
     }
-
     public function mount()
     {
-        if (!$this->riwayatjbt && $this->riwayatjbtId) {
-            $this->riwayatjbt = ModelsRiwayatJabatan::find($this->riwayatjbtId);
+        if (!$this->riwayatpktId && $this->riwayatpktId) {
+            $this->riwayatpktId = ModelsRiwayatPangkat::find($this->riwayatpktId);
         }
 
         $this->button = create_button($this->action, "Riwayat Jabatan");
     }
-
     public function render()
     {
-        $jabatan = Jabatan::all();
-        return view('livewire.riwayat-jabatan', compact('jabatan'));
+        $pangkat = Pangkat::all();
+        return view('livewire.riwayat-pangkat', compact('pangkat'));
     }
 }

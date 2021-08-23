@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePangkatsTable extends Migration
+class CreateRiwayatPangkatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePangkatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pangkats', function (Blueprint $table) {
+        Schema::create('riwayat_pangkats', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('golongan');
+            $table->date('tmt');
+            $table->string('status');
+            $table->foreignId('pangkat_id')->index()->constrained();
+            $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePangkatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pangkats');
+        Schema::dropIfExists('riwayat_pangkats');
     }
 }

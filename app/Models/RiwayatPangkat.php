@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RiwayatJabatan extends Model
+class RiwayatPangkat extends Model
 {
     use HasFactory;
-
-    public $table = 'riwayat_jabatans';
+    public $table = 'riwayat_pangkats';
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +16,9 @@ class RiwayatJabatan extends Model
      * @var array
      */
     protected $fillable = [
-        'jabatan_id',
+        'pangkat_id',
         'user_id',
         'tmt',
-        'keterangan',
         'status',
     ];
 
@@ -30,12 +28,12 @@ class RiwayatJabatan extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('jabatan_id', 'like', '%' . $query . '%')
+            : static::where('pangkat_id', 'like', '%' . $query . '%')
             ->orWhere('user_id', 'like', '%' . $query . '%');
     }
 
     /**
-     * Get all of the user that are assigned this jabatan.
+     * Get all of the user that are assigned this pangkat.
      */
     public function users()
     {
@@ -43,10 +41,10 @@ class RiwayatJabatan extends Model
     }
 
     /**
-     * Get all of the jabatan that are assigned this user.
+     * Get all of the pangkat that are assigned this user.
      */
-    public function jabatan()
+    public function pangkat()
     {
-        return $this->morphedByMany(Jabatan::class, 'assigned');
+        return $this->morphedByMany(Pangkat::class, 'assigned');
     }
 }

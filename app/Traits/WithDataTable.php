@@ -130,6 +130,23 @@ trait WithDataTable
                 ];
                 break;
 
+            case 'riwayatpkt':
+                $riwayatpkt = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.riwayatpkt',
+                    "riwayatpkt" => $riwayatpkt,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('riwayatpkt.new'),
+                            'create_new_text' => 'Tambah Data Riwayat Pangkat',
+                        ]
+                    ])
+                ];
+                break;
+
             default:
                 # code...
                 break;
