@@ -35,9 +35,9 @@ class RiwayatPangkat extends Model
     /**
      * Get all of the user that are assigned this pangkat.
      */
-    public function users()
+    public function user()
     {
-        return $this->morphedByMany(User::class, 'assigned');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -45,6 +45,6 @@ class RiwayatPangkat extends Model
      */
     public function pangkat()
     {
-        return $this->morphedByMany(Pangkat::class, 'assigned');
+        return $this->belongsTo(Pangkat::class);
     }
 }

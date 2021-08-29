@@ -37,6 +37,7 @@ class RiwayatJabatan extends Component
 
     public function addRiwayat()
     {
+
         $this->resetErrorBag();
         $this->validate();
 
@@ -47,6 +48,15 @@ class RiwayatJabatan extends Component
         }
         $this->rj['skjabatan'] = $this->rj['skjabatan']->storeAs('skjabatan', auth()->user()->nip . $this->rj['tmt'] . '.pdf');
         $this->rj['status'] = 'Aktif';
+
+        //check jika sudah ada jabatan dengan status aktif
+        $status = ModelsRiwayatJabatan::where('status', '=', 'aktif')->where('user_id', '=', $this->rj['user_id'])->first();
+        //dd($this->rj['skjabatan']);
+        if (isset($status->id)) {
+            ModelsRiwayatJabatan::query()
+                ->where('id', $status->id)
+                ->update(['status' => ""]);
+        }
 
         ModelsRiwayatJabatan::create($this->rj);
 

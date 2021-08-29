@@ -23,9 +23,9 @@ class RiwayatPangkat extends Component
     protected function rules()
     {
         return  [
-            'rj.pangkat' => 'required|string',
+            'rj.pangkat_id' => 'required|string',
             'rj.tmt' => 'required|string',
-            'rj.skjabatan' => 'required|mimes:pdf|max:500',
+            'rj.skpangkat' => 'required|mimes:pdf|max:500',
         ];
     }
 
@@ -45,7 +45,28 @@ class RiwayatPangkat extends Component
             $this->rj['user_id'] = auth()->user()->id;
         }
         $this->rj['skpangkat'] = $this->rj['skpangkat']->storeAs('skpangkat', auth()->user()->nip . $this->rj['tmt'] . '.pdf');
+        $this->rj['status'] = 'Aktif';
 
+        if (Auth::user()->is_admin) {
+            $riwayatJbt = RiwayatJabatan::where('status', '=', 'Aktif')->first();
+        } else {
+            $riwayatJbt = RiwayatJabatan::where('user_id', '=', Auth::user()->id)->first();
+        }
+        if ($riwayatJbt->keterangan == "Promosi") {
+            $dateNaikPangkat = $riwayatJbt->tmt->addYear();
+        } else {
+            $dateNaikPangkat = $riwayatJbt->tmt->addYears(4);
+        }
+
+        $this->rj['dateNaikPangkat'] = $dateNaikPangkat;
+        dd($this->rj);
+        //check jika sudah ada pangkat dengan status aktif
+        $status = ModelsRiwayatPangkat::where('status', '=', 'Aktif')->where('user_id', '=', $this->rj['user_id'])->first();
+        if (isset($status->id)) {
+            ModelsRiwayatPangkat::query()
+                ->where('id', $status->id)
+                ->update(['status' => "", 'dateNaikPangkat' => null]);
+        }
         ModelsRiwayatPangkat::create($this->rj);
 
         $this->emit('saved');
@@ -73,20 +94,6 @@ class RiwayatPangkat extends Component
         return response()->download(storage_path('app/' . $this->filepath));
     }
 
-    public function getKenaikanPangkat()
-    {
-
-        $riwayatJbt = RiwayatJabatan::where('user_id', '=', Auth::user()->id)->first();
-
-        if ($riwayatJbt->keterangan == "Promosi") {
-            $dateNaikPangkat = $riwayatJbt->tmt->addYears(2);
-        } else {
-            $dateNaikPangkat = $riwayatJbt->tmt->addYears(4);
-        }
-
-        return $dateNaikPangkat;
-    }
-
     public function mount()
     {
         if (!$this->riwayatpktId && $this->riwayatpktId) {
@@ -100,7 +107,7 @@ class RiwayatPangkat extends Component
     {
         $pangkat = Pangkat::all();
         $user = User::all();
-        $this->getKenaikanPangkat();
+        // $this->getKenaikanPangkat();
         return view('livewire.riwayat-pangkat', compact('pangkat', 'user'));
     }
 }

@@ -24,6 +24,8 @@ class RiwayatJabatan extends Model
         'status',
     ];
 
+    protected $dates = ['created_at', 'updated_at', 'tmt'];
+
     /**
      * Search query in multiple whereOr
      */
@@ -37,9 +39,9 @@ class RiwayatJabatan extends Model
     /**
      * Get all of the user that are assigned this jabatan.
      */
-    public function users()
+    public function user()
     {
-        return $this->morphedByMany(User::class, 'assigned');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -47,6 +49,6 @@ class RiwayatJabatan extends Model
      */
     public function jabatan()
     {
-        return $this->morphedByMany(Jabatan::class, 'assigned');
+        return $this->belongsTo(Jabatan::class);
     }
 }

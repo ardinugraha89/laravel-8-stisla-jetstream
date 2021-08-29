@@ -6,6 +6,10 @@
                         ID
                         @include('components.sort-icon', ['field' => 'id'])
                     </a></th>
+                <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
+                        Nama Pengguna
+                        @include('components.sort-icon', ['field' => 'name'])
+                    </a></th>
                 <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
                         Nama Pangkat
                         @include('components.sort-icon', ['field' => 'nama'])
@@ -14,12 +18,12 @@
                         TMT
                         @include('components.sort-icon', ['field' => 'tmt'])
                     </a></th>
-                    <th>SK</th>
+                <th>SK</th>
                 <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
                         Status
                         @include('components.sort-icon', ['field' => 'status'])
                     </a></th>
-                    <th>Kenaikan Pangkat Selanjutnya</th>
+                <th>Kenaikan Pangkat Selanjutnya</th>
                 <th>Action</th>
             </tr>
         </x-slot>
@@ -27,12 +31,15 @@
             @foreach ($riwayatpkt as $riwayat)
                 <tr x-data="window.__controller.dataTableController({{ $riwayat->id }})">
                     <td>{{ $riwayat->id }}</td>
-                    <td>{{ $riwayat->nama }}</td>
+                    <td>{{ $riwayat->user->name }}</td>
+                    <td>{{ $riwayat->pangkat->nama }}</td>
                     <td>{{ $riwayat->tmt }}</td>
-                    <td><x-jet-secondary-button wire:click="export('{{ $riwayat->sk }}')">
-                        {{ __('Download SK') }}
-                    </x-jet-secondary-button></td>
-                    <td>{{ $riwayat->status }}</td>                    
+                    <td>
+                        <x-jet-secondary-button wire:click="export('{{ $riwayat->sk }}')">
+                            {{ __('Download SK') }}
+                        </x-jet-secondary-button>
+                    </td>
+                    <td>{{ $riwayat->status }}</td>
                     <td>{{ $riwayat->dateNaikPangkat }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/riwayat/pangkat/edit/{{ $riwayat->id }}" class="mr-3"><i

@@ -16,8 +16,9 @@ class CreateRiwayatPangkatsTable extends Migration
         Schema::create('riwayat_pangkats', function (Blueprint $table) {
             $table->id();
             $table->date('tmt');
-            $table->text('sk')->nullable();
+            $table->text('skpangkat')->nullable();
             $table->string('status');
+            $table->date('dateNaikPangkat');
             $table->foreignId('pangkat_id')->index()->constrained();
             $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();

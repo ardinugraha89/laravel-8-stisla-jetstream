@@ -86,7 +86,7 @@ class User extends Authenticatable
      */
     public function riwayatJabatan()
     {
-        return $this->morphToMany(RiwayatJabatan::class, 'assigned');
+        return $this->hasMany(RiwayatJabatan::class);
     }
 
     /**
@@ -94,7 +94,7 @@ class User extends Authenticatable
      */
     public function riwayatPangkat()
     {
-        return $this->morphToMany(RiwayatPangkat::class, 'assigned');
+        return $this->hasMany(RiwayatPangkat::class);
     }
 
     public function kgb()

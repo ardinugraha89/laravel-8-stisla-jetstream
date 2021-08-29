@@ -35,6 +35,6 @@ class Pangkat extends Model
      */
     public function riwayatPangkat()
     {
-        return $this->morphToMany(RiwayatPangkat::class, 'assigned');
+        return $this->hasMany(RiwayatPangkat::class);
     }
 }

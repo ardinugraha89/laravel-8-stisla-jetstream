@@ -33,6 +33,6 @@ class Jabatan extends Model
      */
     public function riwayatJabatan()
     {
-        return $this->morphToMany(RiwayatJabatan::class, 'assigned');
+        return $this->hasMany(RiwayatJabatan::class);
     }
 }
