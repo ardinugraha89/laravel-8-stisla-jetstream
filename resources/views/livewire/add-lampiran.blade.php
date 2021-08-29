@@ -9,6 +9,20 @@
         </x-slot>
 
         <x-slot name="form">
+            @if ($action == "addLampiran" && Auth::user()->is_admin)
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="jenjang" value="{{ __('Pilih Pengguna') }}" /> 
+                <select id="user"  class="block mt-1 w-full" name="user" wire:model.defer="lampiran.user">
+                    <option value="">
+                        -- Pilih Pengguna --
+                    </option>
+                    @foreach ($user as $asn)
+                        <option value="{{ $asn->id }}">{{ $asn->name }}</option>
+                    @endforeach    
+                </select>
+                <x-jet-input-error for="lampiran.user" class="mt-2" />
+            </div>
+            @endif
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="nama" value="{{ __('Lampiran') }}" />
                 <select id="nama"  class="block mt-1 w-full" name="nama" wire:model.defer="lampiran.nama">

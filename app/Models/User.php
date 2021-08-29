@@ -96,4 +96,9 @@ class User extends Authenticatable
     {
         return $this->morphToMany(RiwayatPangkat::class, 'assigned');
     }
+
+    public function kgb()
+    {
+        return $this->hasMany(KenaikanGajiBerkala::class);
+    }
 }

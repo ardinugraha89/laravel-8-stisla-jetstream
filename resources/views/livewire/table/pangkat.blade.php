@@ -22,6 +22,7 @@
                 <tr x-data="window.__controller.dataTableController({{ $pkt->id }})">
                     <td>{{ $pkt->id }}</td>
                     <td>{{ $pkt->nama }}</td>
+                    <td>{{ $pkt->golongan }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/pangkat/edit/{{ $pkt->id }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>

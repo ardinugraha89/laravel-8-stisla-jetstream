@@ -24,7 +24,7 @@ class AddPangkat extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function addJabatan()
+    public function addPangkat()
     {
         $this->resetErrorBag();
         $this->validate();

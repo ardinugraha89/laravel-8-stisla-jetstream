@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Pelatihan;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -29,6 +31,7 @@ class AddPelatihan extends Component
                 'pelatihan.nama' => 'required|string',
                 'pelatihan.tanggal_pelatihan' => 'required|string',
                 'pelatihan.sertifikat' => 'required|mimes:pdf|max:500',
+                'pelatihan.user' => 'required',
             ];
         }
     }
@@ -43,7 +46,11 @@ class AddPelatihan extends Component
         $this->resetErrorBag();
         $this->validate();
 
-        $this->pelatihan['user_id'] = auth()->user()->id;
+        if (Auth::user()->is_admin) {
+            $this->pelatihan['user_id'] = $this->pelatihan['user'];
+        } else {
+            $this->pelatihan['user_id'] = auth()->user()->id;
+        }
         $string = str_replace(' ', '', $this->pelatihan['nama']);
         $this->pelatihan['sertifikat'] = $this->pelatihan['sertifikat']->storeAs('sertifikat', auth()->user()->nip . $string . '.pdf');
 
@@ -87,6 +94,13 @@ class AddPelatihan extends Component
 
     public function render()
     {
-        return view('livewire.add-pelatihan');
+        if (Auth::user()->is_admin) {
+            $user = User::all();
+            return view('livewire.add-pelatihan', compact('user'));
+        } else {
+            return view('livewire.add-pelatihan', [
+                'pelatihan' => Pelatihan::where('user_id', '=', auth()->user()->id)->get(),
+            ]);
+        }
     }
 }

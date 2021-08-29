@@ -8,9 +8,23 @@
             {{ __('Lengkapi data berikut dan submit untuk membuat data riawayat pendidikan') }}
         </x-slot>
 
-        <x-slot name="form">
+        <x-slot name="form">            
+            @if ($action == "addEdu" && Auth::user()->is_admin)
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="jenjang" value="{{ __('Jenjang Pendidikan') }}" />
+                <x-jet-label for="jenjang" value="{{ __('Pilih Pengguna') }}" /> 
+                <select id="user"  class="block mt-1 w-full" name="user" wire:model.defer="edu.user">
+                    <option value="">
+                        -- Pilih Pengguna --
+                    </option>
+                    @foreach ($user as $asn)
+                        <option value="{{ $asn->id }}">{{ $asn->name }}</option>
+                    @endforeach    
+                </select>
+                <x-jet-input-error for="edu.user" class="mt-2" />
+            </div>
+            @endif
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="jenjang" value="{{ __('Jenjang Pendidikan') }}" />           
                 <select id="jenjang_pendidikan"  class="block mt-1 w-full" name="jenjang_pendidikan" wire:model.defer="edu.jenjang_pendidikan">
                     <option value="">
                         -- Pilih Jenjang Pendidikan --

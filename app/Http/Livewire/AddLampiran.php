@@ -3,10 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Lampiran;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddLampiran extends Component
 {
+    use WithFileUploads;
     public $lampiran, $lampiranId, $action, $button;
 
     protected function rules()
@@ -34,7 +38,11 @@ class AddLampiran extends Component
         $this->resetErrorBag();
         $this->validate();
 
-        $this->lampiran['user_id'] = auth()->user()->id;
+        if (Auth::user()->is_admin) {
+            $this->lampiran['user_id'] = $this->lampiran['user'];
+        } else {
+            $this->lampiran['user_id'] = auth()->user()->id;
+        }
         $this->lampiran['dokumen'] = $this->lampiran['dokumen']->storeAs('dokumen', auth()->user()->nip . $this->lampiran['nama'] . '.pdf');
 
         Lampiran::create($this->lampiran);
@@ -76,6 +84,13 @@ class AddLampiran extends Component
 
     public function render()
     {
-        return view('livewire.add-lampiran');
+        if (Auth::user()->is_admin) {
+            $user = User::all();
+            return view('livewire.add-lampiran', compact('user'));
+        } else {
+            return view('livewire.add-lampiran', [
+                'lampiran' => Lampiran::where('user_id', '=', auth()->user()->id)->get(),
+            ]);
+        }
     }
 }

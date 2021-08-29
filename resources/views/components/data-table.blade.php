@@ -1,9 +1,19 @@
 <div class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <div class="p-8 pt-4 mt-2 bg-white" x-data="window.__controller.dataTableMainController()" x-init="setCallback();">
         <div class="flex pb-4 -ml-3">
-            <a href="{{ $data->href->create_new }}"  class="-ml- btn btn-primary shadow-none">
-                <span class="fas fa-plus"></span> {{ $data->href->create_new_text }}
-            </a>
+            {{-- @dd(request()->route()->getName()) --}}
+            @if (request()->route()->getName() == "kgb" || request()->route()->getName() == "jabatan.user" || request()->route()->getName() == "pangkat.user" || request()->route()->getName() == "user")
+                @if (Auth::user()->is_admin)
+                <a href="{{ $data->href->create_new }}"  class="-ml- btn btn-primary shadow-none">
+                    <span class="fas fa-plus"></span> {{ $data->href->create_new_text }}
+                </a>
+                @endif
+            @else
+                <a href="{{ $data->href->create_new }}"  class="-ml- btn btn-primary shadow-none">
+                    <span class="fas fa-plus"></span> {{ $data->href->create_new_text }}
+                </a>
+            @endif
+            
             {{-- <a href="{{ $data->href->export }}" class="ml-2 btn btn-success shadow-none">
                 <span class="fas fa-file-export"></span> {{ $data->href->export_text }}
             </a> --}}
@@ -38,7 +48,9 @@
         </div>
 
         <div id="table_pagination" class="py-3">
+            @if (Auth::user()->is_admin)                
             {{ $model->onEachSide(1)->links() }}
+            @endif
         </div>
     </div>
 </div>

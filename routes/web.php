@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\KenaikanGajiBerkalaController;
 use App\Http\Controllers\LampiranController;
 use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PelatihanController;
@@ -59,4 +60,8 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::get('/riwayat/pangkat', [RiwayatPangkatController::class, "index_view"])->name('pangkat.user');
     Route::view('/riwayat/pangkat/new', "pages.riwayatpkt.riwayatpkt-new")->name('riwayatpkt.new');
     Route::view('/riwayat/pangkat/edit/{riwayatpktId}', "pages.riwayatpkt.riwayatpkt-edit")->name('riwayatpkt.edit');
+
+    Route::get('/kenaikan/gaji', [KenaikanGajiBerkalaController::class, "index_view"])->name('kgb');
+    Route::view('/kenaikan/gaji/new', "pages.kgb.kgb-new")->name('kgb.new');
+    Route::view('/kenaikan/gaji/edit/{kgbId}', "pages.kgb.kgb-edit")->name('kgb.edit');
 });

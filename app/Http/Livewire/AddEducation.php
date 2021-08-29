@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Education;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -31,6 +33,7 @@ class AddEducation extends Component
                 'edu.nama' => 'required|string',
                 'edu.tahun_lulus' => 'required|digits:4',
                 'edu.ijazah_path' => 'required|mimes:pdf|max:500',
+                'edu.user' => 'required',
             ];
         }
     }
@@ -45,7 +48,11 @@ class AddEducation extends Component
         $this->resetErrorBag();
         $this->validate();
 
-        $this->edu['user_id'] = auth()->user()->id;
+        if (Auth::user()->is_admin) {
+            $this->edu['user_id'] = $this->edu['user'];
+        } else {
+            $this->edu['user_id'] = auth()->user()->id;
+        }
         $this->edu['ijazah_path'] = $this->edu['ijazah_path']->storeAs('ijazah', auth()->user()->nip . $this->edu['jenjang_pendidikan'] . '.pdf');
 
         Education::create($this->edu);
@@ -89,6 +96,13 @@ class AddEducation extends Component
 
     public function render()
     {
-        return view('livewire.add-education');
+        if (Auth::user()->is_admin) {
+            $user = User::all();
+            return view('livewire.add-education', compact('user'));
+        } else {
+            return view('livewire.add-education', [
+                'edu' => Education::where('user_id', '=', auth()->user()->id)->get(),
+            ]);
+        }
     }
 }

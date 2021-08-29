@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Auth;
 
 trait WithDataTable
 {
@@ -10,9 +11,16 @@ trait WithDataTable
     {
         switch ($this->name) {
             case 'user':
-                $users = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->is_admin) {
+                    $users = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->select('users.*')
+                        ->with('userDetail')
+                        ->paginate($this->perPage);
+                } else {
+                    $users = $this->model::where('id', '=', auth()->user()->id)->with('userDetail')->get();
+                }
+
 
                 return [
                     "view" => 'livewire.table.user',
@@ -142,6 +150,23 @@ trait WithDataTable
                         'href' => [
                             'create_new' => route('riwayatpkt.new'),
                             'create_new_text' => 'Tambah Data Riwayat Pangkat',
+                        ]
+                    ])
+                ];
+                break;
+
+            case 'kgb':
+                $kgb = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.kgb',
+                    "kgb" => $kgb,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('kgb.new'),
+                            'create_new_text' => 'Tambah Data Kenaikan Gaji Berkala',
                         ]
                     ])
                 ];

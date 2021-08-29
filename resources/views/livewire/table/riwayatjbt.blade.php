@@ -14,6 +14,7 @@
                         TMT
                         @include('components.sort-icon', ['field' => 'tmt'])
                     </a></th>
+                    <th>SK</th>
                 <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
                         Status
                         @include('components.sort-icon', ['field' => 'status'])
@@ -27,6 +28,9 @@
                     <td>{{ $riwayat->id }}</td>
                     <td>{{ $riwayat->nama }}</td>
                     <td>{{ $riwayat->tmt }}</td>
+                    <td><x-jet-secondary-button wire:click="export('{{ $riwayat->sk }}')">
+                        {{ __('Download SK') }}
+                    </x-jet-secondary-button></td>
                     <td>{{ $riwayat->status }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/riwayat/jabatan/edit/{{ $riwayat->id }}" class="mr-3"><i

@@ -9,9 +9,23 @@
         </x-slot>
 
         <x-slot name="form">
+            @if ($action == "addRiwayat" && Auth::user()->is_admin)
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="jenjang" value="{{ __('Pilih Pengguna') }}" /> 
+                <select id="user"  class="block mt-1 w-full" name="user" wire:model.defer="rj.user">
+                    <option value="">
+                        -- Pilih Pengguna --
+                    </option>
+                    @foreach ($user as $asn)
+                        <option value="{{ $asn->id }}">{{ $asn->name }}</option>
+                    @endforeach    
+                </select>
+                <x-jet-input-error for="rj.user" class="mt-2" />
+            </div>
+            @endif
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="jabatan" value="{{ __('Riwayat Jabatan') }}" />
-                <select class="form-control" id="jabatan" name="jabatan" wire:model.defer="rj.jabatan">
+                <select class="form-control" id="jabatan" name="jabatan" wire:model.defer="rj.jabatan_id">
                     <option value="">
                         -- Pilih Jabatan --
                     </option>
@@ -19,7 +33,7 @@
                         <option value="{{ $jbtn->id }}">{{ $jbtn->nama }}</option>
                     @endforeach
                 </select>
-                <x-jet-input-error for="rj.jabatan" class="mt-2" />
+                <x-jet-input-error for="rj.jabatan_id" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
@@ -42,10 +56,10 @@
                     <option value="">
                         -- Pilih Keterangan --
                     </option>
-                    <option value="SD">
+                    <option value="Normal">
                         Kenaikan Jabatan Normal
                     </option>
-                    <option value="SMP">
+                    <option value="Promosi">
                         Promosi
                     </option>
                 </select>
