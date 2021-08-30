@@ -43,6 +43,7 @@ class AddKgb extends Component
         }
         $this->kgb['skkgb'] = $this->kgb['skkgb']->storeAs('kgb', auth()->user()->nip . $this->kgb['tmt'] . '.pdf');
 
+        $this->kgb['dateKenaikan'] = date('Y-m-d', strtotime('+2 year', strtotime($this->kgb['tmt'])));
 
         KenaikanGajiBerkala::create($this->kgb);
 

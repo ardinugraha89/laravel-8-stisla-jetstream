@@ -17,7 +17,7 @@ class CreateKenaikanGajiBerkalasTable extends Migration
             $table->id();
             $table->date('tmt');
             $table->text('sk')->nullable();
-            $table->string('status');
+            $table->date('dateKenaikan');
             $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });

@@ -18,7 +18,8 @@ class KenaikanGajiBerkala extends Model
     protected $fillable = [
         'user_id',
         'tmt',
-        'status',
+        'skkgb',
+        'dateKenaikan',
     ];
 
     /**
