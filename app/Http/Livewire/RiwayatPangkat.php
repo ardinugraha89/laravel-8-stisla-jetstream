@@ -53,13 +53,13 @@ class RiwayatPangkat extends Component
             $riwayatJbt = RiwayatJabatan::where('user_id', '=', Auth::user()->id)->first();
         }
         if ($riwayatJbt->keterangan == "Promosi") {
-            $dateNaikPangkat = $riwayatJbt->tmt->addYear();
+            $dateNaikPangkat = date('Y-m-d', strtotime('+1 year', strtotime($riwayatJbt->tmt)));
         } else {
-            $dateNaikPangkat = $riwayatJbt->tmt->addYears(4);
+            $dateNaikPangkat = date('Y-m-d', strtotime('+5 year', strtotime($riwayatJbt->tmt)));
         }
 
         $this->rj['dateNaikPangkat'] = $dateNaikPangkat;
-        dd($this->rj);
+
         //check jika sudah ada pangkat dengan status aktif
         $status = ModelsRiwayatPangkat::where('status', '=', 'Aktif')->where('user_id', '=', $this->rj['user_id'])->first();
         if (isset($status->id)) {
@@ -67,6 +67,7 @@ class RiwayatPangkat extends Component
                 ->where('id', $status->id)
                 ->update(['status' => "", 'dateNaikPangkat' => null]);
         }
+        dd($this->rj);
         ModelsRiwayatPangkat::create($this->rj);
 
         $this->emit('saved');
