@@ -19,7 +19,6 @@ class RiwayatPangkat extends Component
     public $riwayatpktId;
     public $action;
     public $button;
-    public $dateNaikPangkat;
     protected function rules()
     {
         return  [
@@ -47,18 +46,7 @@ class RiwayatPangkat extends Component
         $this->rj['skpangkat'] = $this->rj['skpangkat']->storeAs('skpangkat', auth()->user()->nip . $this->rj['tmt'] . '.pdf');
         $this->rj['status'] = 'Aktif';
 
-        if (Auth::user()->is_admin) {
-            $riwayatJbt = RiwayatJabatan::where('status', '=', 'Aktif')->first();
-        } else {
-            $riwayatJbt = RiwayatJabatan::where('user_id', '=', Auth::user()->id)->first();
-        }
-        if ($riwayatJbt->keterangan == "Promosi") {
-            $dateNaikPangkat = date('Y-m-d', strtotime('+1 year', strtotime($riwayatJbt->tmt)));
-        } else {
-            $dateNaikPangkat = date('Y-m-d', strtotime('+5 year', strtotime($riwayatJbt->tmt)));
-        }
-
-        $this->rj['dateNaikPangkat'] = $dateNaikPangkat;
+        $this->rj['dateNaikPangkat'] = date('Y-m-d', strtotime('+4 year', strtotime($this->rj['tmt'])));
 
         //check jika sudah ada pangkat dengan status aktif
         $status = ModelsRiwayatPangkat::where('status', '=', 'Aktif')->where('user_id', '=', $this->rj['user_id'])->first();
