@@ -19,7 +19,9 @@ class RiwayatPangkat extends Model
         'pangkat_id',
         'user_id',
         'tmt',
+        'skpangkat',
         'status',
+        'dateNaikPangkat',
     ];
 
     /**

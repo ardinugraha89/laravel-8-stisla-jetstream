@@ -20,6 +20,7 @@ class RiwayatJabatan extends Model
         'jabatan_id',
         'user_id',
         'tmt',
+        'skjabatan',
         'keterangan',
         'status',
     ];
