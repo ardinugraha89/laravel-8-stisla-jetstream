@@ -55,7 +55,6 @@ class RiwayatPangkat extends Component
                 ->where('id', $status->id)
                 ->update(['status' => "", 'dateNaikPangkat' => null]);
         }
-        dd($this->rj);
         ModelsRiwayatPangkat::create($this->rj);
 
         $this->emit('saved');

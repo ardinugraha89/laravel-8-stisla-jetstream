@@ -56,11 +56,11 @@
                     <option value="">
                         -- Pilih Keterangan --
                     </option>
-                    <option value="Normal">
-                        Kenaikan Jabatan Normal
-                    </option>
                     <option value="Promosi">
-                        Promosi
+                        Kenaikan Jabatan
+                    </option>
+                    <option value="Non">
+                        Non Job
                     </option>
                 </select>
                 <x-jet-input-error for="rj.keterangan" class="mt-2" />

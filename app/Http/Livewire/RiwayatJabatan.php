@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Education;
 use App\Models\Jabatan;
+use App\Models\Pangkat;
 use App\Models\RiwayatJabatan as ModelsRiwayatJabatan;
+use App\Models\RiwayatPangkat;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -19,6 +22,7 @@ class RiwayatJabatan extends Component
     public $button;
     public $filepath;
     public $rj;
+    public $pangkat, $dateNaikPangkat, $edu;
     protected function rules()
     {
         return  [
@@ -59,6 +63,33 @@ class RiwayatJabatan extends Component
         }
 
         ModelsRiwayatJabatan::create($this->rj);
+
+        //kalau naik jabatan promosi & golongan masih 3b, date naik pangkat jadi TMT pangkat + 1
+        if ($this->rj['keterangan'] == 'Promosi') {
+            //check id pangkat pengguna
+            $pangkat = RiwayatPangkat::where('user_id', '=', $this->rj['user_id'])->where('Status', '=', 'Aktif')->first();
+            //ambil data golongan pengguna
+            $golongan = Pangkat::find($pangkat->id)->pluck('golongan');
+
+            //cek apakah masa jabatan sudah mencukupi satu tahun
+            $jabatanDate = date('Y-m-d', strtotime('+1 year', strtotime($this->rj['tmt'])));
+            //cek apakah masa pangkat sudah 1 tahun
+            $pangkatDate = date('Y-m-d', strtotime('+1 year', strtotime($pangkat->tmt)));
+            if ($jabatanDate > $pangkatDate) {
+                if ($golongan == 'IIIB') {
+                    RiwayatPangkat::query()
+                        ->where('id', '=', $pangkat->id)
+                        ->update(['dateNaikPangkat' => date('Y-m-d', strtotime('+1 year', strtotime($pangkatDate)))]);
+                } elseif ($golongan == 'IIID') {
+                }
+            } else {
+                if ($golongan == 'IIIB') {
+                    RiwayatPangkat::query()
+                        ->where('id', '=', $pangkat->id)
+                        ->update(['dateNaikPangkat' => $pangkatDate]);
+                }
+            }
+        }
 
         $this->emit('saved');
         $this->reset('rj');
