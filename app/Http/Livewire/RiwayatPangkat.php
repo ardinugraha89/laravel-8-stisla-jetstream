@@ -53,7 +53,7 @@ class RiwayatPangkat extends Component
         if (isset($status->id)) {
             ModelsRiwayatPangkat::query()
                 ->where('id', $status->id)
-                ->update(['status' => "", 'dateNaikPangkat' => null]);
+                ->update(['status' => "-", 'dateNaikPangkat' => "-"]);
         }
         ModelsRiwayatPangkat::create($this->rj);
 

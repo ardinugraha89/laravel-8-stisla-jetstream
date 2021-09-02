@@ -34,7 +34,7 @@
                     <td>{{ $riwayat->jabatan->nama }}</td>
                     <td>{{ $riwayat->tmt }}</td>
                     <td>
-                        <x-jet-secondary-button wire:click="export('{{ $riwayat->sk }}')">
+                        <x-jet-secondary-button wire:click="export('{{ $riwayat->skjabatan }}')">
                             {{ __('Download SK') }}
                         </x-jet-secondary-button>
                     </td>

@@ -6,21 +6,21 @@
                         ID
                         @include('components.sort-icon', ['field' => 'id'])
                     </a></th>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
+                <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
                         Nama User
-                        @include('components.sort-icon', ['field' => 'nama'])
+                        @include('components.sort-icon', ['field' => 'name'])
                     </a></th>
                 <th><a wire:click.prevent="sortBy('tmt')" role="button" href="#">
                         TMT
                         @include('components.sort-icon', ['field' => 'tmt'])
                     </a></th>
-                    <th><a wire:click.prevent="sortBy('sk')" role="button" href="#">
+                    <th><a wire:click.prevent="sortBy('skkgb')" role="button" href="#">
                         SK
-                        @include('components.sort-icon', ['field' => 'sk'])
+                        @include('components.sort-icon', ['field' => 'skkgb'])
                     </a></th>
-                <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
-                        Status
-                        @include('components.sort-icon', ['field' => 'status'])
+                <th><a wire:click.prevent="sortBy('dateKenaikan')" role="button" href="#">
+                        Kenaikan Selanjutnya
+                        @include('components.sort-icon', ['field' => 'dateKenaikan'])
                     </a></th>
                 <th>Action</th>
             </tr>
@@ -29,12 +29,12 @@
             @foreach ($kgb as $kenaikan)
                 <tr x-data="window.__controller.dataTableController({{ $kenaikan->id }})">
                     <td>{{ $kenaikan->id }}</td>
-                    <td>{{ $kenaikan->nama }}</td>
+                    <td>{{ $kenaikan->user->name }}</td>
                     <td>{{ $kenaikan->tmt }}</td>
-                    <td><x-jet-secondary-button wire:click="export('{{ $kenaikan->sk }}')">
+                    <td><x-jet-secondary-button wire:click="export('{{ $kenaikan->skkgb }}')">
                         {{ __('Download SK') }}
                     </x-jet-secondary-button></td>
-                    <td>{{ $kenaikan->status }}</td>
+                    <td>{{ $kenaikan->dateKenaikan }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/kenaikan/edit/{{ $kenaikan->id }}" class="mr-3"><i
                                 class="fa fa-16px fa-pen"></i></a>
