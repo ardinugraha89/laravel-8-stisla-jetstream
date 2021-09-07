@@ -93,9 +93,14 @@ class RiwayatPangkat extends Component
     }
     public function render()
     {
-        $pangkat = Pangkat::all();
-        $user = User::all();
-        // $this->getKenaikanPangkat();
-        return view('livewire.riwayat-pangkat', compact('pangkat', 'user'));
+        if (Auth::user()->is_admin) {
+            $pangkat = Pangkat::all();
+            $user = User::all();
+            return view('livewire.riwayat-pangkat', compact('pangkat', 'user'));
+        } else {
+            return view('livewire.riwayat-pangkat', [
+                'riwayatpky' => RiwayatPangkat::where('user_id', '=', auth()->user()->id)->get(),
+            ]);
+        }
     }
 }

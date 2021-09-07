@@ -172,6 +172,23 @@ trait WithDataTable
                 ];
                 break;
 
+            case 'mutasi':
+                $mutasi = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.mutasi',
+                    "mutasi" => $mutasi,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('mutasi.new'),
+                            'create_new_text' => 'Tambah Catatan Mutasi',
+                        ]
+                    ])
+                ];
+                break;
+
             default:
                 # code...
                 break;

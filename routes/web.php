@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatatanMutasiController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KenaikanGajiBerkalaController;
@@ -64,4 +65,8 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::get('/kenaikan/gaji', [KenaikanGajiBerkalaController::class, "index_view"])->name('kgb');
     Route::view('/kenaikan/gaji/new', "pages.kgb.kgb-new")->name('kgb.new');
     Route::view('/kenaikan/gaji/edit/{kgbId}', "pages.kgb.kgb-edit")->name('kgb.edit');
+
+    Route::get('/mutasi', [CatatanMutasiController::class, "index_view"])->name('mutasi');
+    Route::view('/mutasi/new', "pages.mutasi.mutasi-new")->name('mutasi.new');
+    Route::view('/mutasi/edit/{mutasiId}', "pages.mutasi.mutasi-edit")->name('mutasi.edit');
 });

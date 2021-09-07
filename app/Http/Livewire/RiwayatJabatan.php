@@ -138,8 +138,14 @@ class RiwayatJabatan extends Component
 
     public function render()
     {
-        $jabatan = Jabatan::all();
-        $user = User::all();
-        return view('livewire.riwayat-jabatan', compact('jabatan', 'user'));
+        if (Auth::user()->is_admin) {
+            $jabatan = Jabatan::all();
+            $user = User::all();
+            return view('livewire.riwayat-jabatan', compact('jabatan', 'user'));
+        } else {
+            return view('livewire.riwayat-jabatan', [
+                'riwayatjbt' => RiwayatJabatan::where('user_id', '=', auth()->user()->id)->get(),
+            ]);
+        }
     }
 }

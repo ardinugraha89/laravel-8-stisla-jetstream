@@ -10,7 +10,7 @@ if (Auth::user()->is_admin) {
             'href' => [
                 [
                     'section_text' => 'User',
-                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'pangkat.user', 'text' => 'Info Pangkat'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'kgb', 'text' => 'Kenaikan Gaji Berkala'], ['href' => 'user', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran'], ['href' => 'user.new', 'text' => 'Buat User']],
+                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'pangkat.user', 'text' => 'Info Pangkat'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'kgb', 'text' => 'Kenaikan Gaji Berkala'], ['href' => 'mutasi', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran'], ['href' => 'user.new', 'text' => 'Buat User']],
                 ],
             ],
             'text' => 'User',
@@ -68,7 +68,7 @@ if (Auth::user()->is_admin) {
             'href' => [
                 [
                     'section_text' => 'User',
-                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'pangkat.user', 'text' => 'Info Pangkat'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'kgb', 'text' => 'Kenaikan Gaji Berkala'], ['href' => 'user', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran']],
+                    'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'pangkat.user', 'text' => 'Info Pangkat'], ['href' => 'jabatan.user', 'text' => 'Info Jabatan'], ['href' => 'kgb', 'text' => 'Kenaikan Gaji Berkala'], ['href' => 'mutasi', 'text' => 'Catatan Mutasi'], ['href' => 'lampiran', 'text' => 'Lampiran']],
                 ],
             ],
             'text' => 'User',
