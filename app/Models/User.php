@@ -101,4 +101,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(KenaikanGajiBerkala::class);
     }
+
+    public function catatanMutasi()
+    {
+        return $this->hasMany(CatatanMutasi::class);
+    }
 }
