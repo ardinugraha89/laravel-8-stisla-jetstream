@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lampiran extends Model
 {
     use HasFactory;
-    public $table = 'lampiran';
+    public $table = 'attachments';
 
     /**
      * The attributes that are mass assignable.

@@ -13,13 +13,13 @@ class CreateRiwayatPangkatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('riwayat_pangkats', function (Blueprint $table) {
+        Schema::create('rank_records', function (Blueprint $table) {
             $table->id();
             $table->date('tmt');
             $table->text('skpangkat')->nullable();
             $table->string('status');
             $table->date('dateNaikPangkat');
-            $table->foreignId('pangkat_id')->index()->constrained();
+            $table->foreignId('rank_id')->index()->constrained();
             $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateRiwayatPangkatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('riwayat_pangkats');
+        Schema::dropIfExists('rank_records');
     }
 }

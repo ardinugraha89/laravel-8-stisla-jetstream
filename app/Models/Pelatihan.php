@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pelatihan extends Model
 {
     use HasFactory;
-    public $table = 'pelatihan';
+    public $table = 'trainings';
 
     /**
      * The attributes that are mass assignable.

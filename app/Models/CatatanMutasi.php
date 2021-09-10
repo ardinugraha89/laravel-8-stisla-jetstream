@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CatatanMutasi extends Model
 {
     use HasFactory;
-    public $table = 'catatan_mutasis';
+    public $table = 'mutation_records';
 
     /**
      * The attributes that are mass assignable.

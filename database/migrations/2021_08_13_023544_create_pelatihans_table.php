@@ -13,7 +13,7 @@ class CreatePelatihansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelatihan', function (Blueprint $table) {
+        Schema::create('trainings', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->date('tanggal_pelatihan');
@@ -30,6 +30,6 @@ class CreatePelatihansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelatihan');
+        Schema::dropIfExists('trainings');
     }
 }

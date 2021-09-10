@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jabatan extends Model
 {
     use HasFactory;
-    public $table = 'jabatans';
+    public $table = 'positions';
 
     /**
      * The attributes that are mass assignable.

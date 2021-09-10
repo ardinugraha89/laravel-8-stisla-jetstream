@@ -13,7 +13,7 @@ class CreatePangkatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pangkats', function (Blueprint $table) {
+        Schema::create('ranks', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('golongan');
@@ -28,6 +28,6 @@ class CreatePangkatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pangkats');
+        Schema::dropIfExists('ranks');
     }
 }

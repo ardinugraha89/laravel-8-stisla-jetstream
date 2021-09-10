@@ -13,13 +13,13 @@ class CreateRiwayatJabatansTable extends Migration
      */
     public function up()
     {
-        Schema::create('riwayat_jabatans', function (Blueprint $table) {
+        Schema::create('position_records', function (Blueprint $table) {
             $table->id();
             $table->date('tmt');
             $table->text('skjabatan')->nullable();
             $table->string('status');
             $table->string('keterangan');
-            $table->foreignId('jabatan_id')->index()->constrained();
+            $table->foreignId('position_id')->index()->constrained();
             $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateRiwayatJabatansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('riwayat_jabatans');
+        Schema::dropIfExists('position_records');
     }
 }

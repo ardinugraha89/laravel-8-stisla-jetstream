@@ -13,7 +13,7 @@ class CreateLampiransTable extends Migration
      */
     public function up()
     {
-        Schema::create('lampiran', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->text('dokumen')->nullable();
@@ -29,6 +29,6 @@ class CreateLampiransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lampiran');
+        Schema::dropIfExists('attachments');
     }
 }

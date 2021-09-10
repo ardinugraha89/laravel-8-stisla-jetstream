@@ -13,7 +13,7 @@ class CreateKenaikanGajiBerkalasTable extends Migration
      */
     public function up()
     {
-        Schema::create('kenaikan_gaji_berkalas', function (Blueprint $table) {
+        Schema::create('rises', function (Blueprint $table) {
             $table->id();
             $table->date('tmt');
             $table->text('sk')->nullable();
@@ -30,6 +30,6 @@ class CreateKenaikanGajiBerkalasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kenaikan_gaji_berkalas');
+        Schema::dropIfExists('rises');
     }
 }

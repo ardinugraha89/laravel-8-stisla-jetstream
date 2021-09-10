@@ -9,7 +9,7 @@ class RiwayatJabatan extends Model
 {
     use HasFactory;
 
-    public $table = 'riwayat_jabatans';
+    public $table = 'position_records';
 
     /**
      * The attributes that are mass assignable.

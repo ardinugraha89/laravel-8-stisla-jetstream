@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pangkat extends Model
 {
     use HasFactory;
-    public $table = 'pangkats';
+    public $table = 'ranks';
 
     /**
      * The attributes that are mass assignable.

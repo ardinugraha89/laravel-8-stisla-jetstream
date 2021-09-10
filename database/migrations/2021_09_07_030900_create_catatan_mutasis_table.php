@@ -13,7 +13,7 @@ class CreateCatatanMutasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('catatan_mutasis', function (Blueprint $table) {
+        Schema::create('mutation_records', function (Blueprint $table) {
             $table->id();
             $table->text('catatan');
             $table->date('tanggal');
@@ -29,6 +29,6 @@ class CreateCatatanMutasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catatan_mutasis');
+        Schema::dropIfExists('mutation_records');
     }
 }
