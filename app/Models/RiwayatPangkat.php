@@ -16,7 +16,7 @@ class RiwayatPangkat extends Model
      * @var array
      */
     protected $fillable = [
-        'pangkat_id',
+        'rank_id',
         'user_id',
         'tmt',
         'skpangkat',
@@ -30,7 +30,7 @@ class RiwayatPangkat extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('pangkat_id', 'like', '%' . $query . '%')
+            : static::where('rank_id', 'like', '%' . $query . '%')
             ->orWhere('user_id', 'like', '%' . $query . '%');
     }
 
@@ -45,7 +45,7 @@ class RiwayatPangkat extends Model
     /**
      * Get all of the pangkat that are assigned this user.
      */
-    public function pangkat()
+    public function rank()
     {
         return $this->belongsTo(Pangkat::class);
     }

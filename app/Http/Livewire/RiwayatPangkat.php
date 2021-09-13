@@ -22,7 +22,7 @@ class RiwayatPangkat extends Component
     protected function rules()
     {
         return  [
-            'rj.pangkat_id' => 'required|string',
+            'rj.rank_id' => 'required|string',
             'rj.tmt' => 'required|string',
             'rj.skpangkat' => 'required|mimes:pdf|max:500',
         ];

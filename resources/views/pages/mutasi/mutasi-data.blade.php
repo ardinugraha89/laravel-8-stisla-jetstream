@@ -10,6 +10,6 @@
     </x-slot>
 
     <div>
-        <livewire:table.main name="mutasi" :model="$catatanMutasi" />
+        <livewire:table.main name="mutasi" :model="$mutasi" />
     </div>
 </x-app-layout>

@@ -17,7 +17,7 @@ class CreateUser extends Component
     protected function getRules()
     {
         $rules = ($this->action == "updateUser") ? [
-            'user.nip' => 'required|digits:15|unique:users,nip,' . $this->userId
+            'user.nip' => 'required|digits:18|unique:users,nip,' . $this->userId
         ] : [
             'user.password' => 'required|min:8|confirmed',
             'user.password_confirmation' => 'required' // livewire need this
@@ -25,7 +25,7 @@ class CreateUser extends Component
 
         return array_merge([
             'user.name' => 'required|min:3',
-            'user.nip' => 'required|digits:15|unique:users,nip'
+            'user.nip' => 'required|digits:18|unique:users,nip'
         ], $rules);
     }
 

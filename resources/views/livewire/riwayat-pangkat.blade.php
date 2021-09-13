@@ -25,7 +25,7 @@
             @endif
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="pangkat" value="{{ __('Riwayat Pangkat') }}" />
-                <select class="form-control" id="pangkat" name="pangkat" wire:model.defer="rj.pangkat_id">
+                <select class="form-control" id="pangkat" name="pangkat" wire:model.defer="rj.rank_id">
                     <option value="">
                         -- Pilih Pangkat --
                     </option>
@@ -33,7 +33,7 @@
                         <option value="{{ $pkt->id }}">{{ $pkt->nama }}</option>
                     @endforeach
                 </select>
-                <x-jet-input-error for="rj.pangkat_id" class="mt-2" />
+                <x-jet-input-error for="rj.rank_id" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">

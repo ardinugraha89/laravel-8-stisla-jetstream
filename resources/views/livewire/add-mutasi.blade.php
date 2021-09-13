@@ -25,9 +25,9 @@
             @endif
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="nama" value="{{ __('Catatan Mutasi') }}" />
-                <x-jet-input id="nama" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="mutasi.nama" />
-                <x-jet-input-error for="mutasi.nama" class="mt-2" />
+                <x-jet-label for="catatan" value="{{ __('Catatan Mutasi') }}" />
+                <x-jet-input id="catatan" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="mutasi.catatan" />
+                <x-jet-input-error for="mutasi.catatan" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">

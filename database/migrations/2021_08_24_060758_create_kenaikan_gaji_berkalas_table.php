@@ -16,7 +16,7 @@ class CreateKenaikanGajiBerkalasTable extends Migration
         Schema::create('rises', function (Blueprint $table) {
             $table->id();
             $table->date('tmt');
-            $table->text('sk')->nullable();
+            $table->text('skkgb')->nullable();
             $table->date('dateKenaikan');
             $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();

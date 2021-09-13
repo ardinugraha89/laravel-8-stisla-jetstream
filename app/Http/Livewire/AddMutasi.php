@@ -61,7 +61,7 @@ class AddMutasi extends Component
     public function mount()
     {
         if (!$this->mutasi && $this->mutasiId) {
-            $this->mutasi = CatatanMutasi::find($this->kgbId);
+            $this->mutasi = CatatanMutasi::find($this->mutasiId);
         }
 
         $this->button = create_button($this->action, "Catatan Mutasi");

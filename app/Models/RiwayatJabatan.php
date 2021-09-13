@@ -17,7 +17,7 @@ class RiwayatJabatan extends Model
      * @var array
      */
     protected $fillable = [
-        'jabatan_id',
+        'position_id',
         'user_id',
         'tmt',
         'skjabatan',
@@ -33,7 +33,7 @@ class RiwayatJabatan extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('jabatan_id', 'like', '%' . $query . '%')
+            : static::where('position_id', 'like', '%' . $query . '%')
             ->orWhere('user_id', 'like', '%' . $query . '%');
     }
 
@@ -48,7 +48,7 @@ class RiwayatJabatan extends Model
     /**
      * Get all of the jabatan that are assigned this user.
      */
-    public function jabatan()
+    public function position()
     {
         return $this->belongsTo(Jabatan::class);
     }

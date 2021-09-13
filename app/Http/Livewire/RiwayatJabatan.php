@@ -27,7 +27,7 @@ class RiwayatJabatan extends Component
     {
         return  [
             'rj.user' => 'required|string',
-            'rj.jabatan_id' => 'required|string',
+            'rj.position_id' => 'required|string',
             'rj.tmt' => 'required|string',
             'rj.skjabatan' => 'required|mimes:pdf|max:500',
             'rj.keterangan' => 'required|string',
@@ -69,7 +69,7 @@ class RiwayatJabatan extends Component
             //check id pangkat pengguna
             $pangkat = RiwayatPangkat::where('user_id', '=', $this->rj['user_id'])->where('Status', '=', 'Aktif')->first();
             //ambil data golongan pengguna
-            $golongan = Pangkat::find($pangkat->pangkat_id);
+            $golongan = Pangkat::find($pangkat->rank_id);
             $pendidikan = Education::where('user_id', '=', $this->rj['user_id'])->max('tahun_lulus');
 
             //cek apakah masa jabatan sudah mencukupi satu tahun

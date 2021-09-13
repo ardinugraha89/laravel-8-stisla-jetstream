@@ -32,7 +32,7 @@
                 <tr x-data="window.__controller.dataTableController({{ $riwayat->id }})">
                     <td>{{ $riwayat->id }}</td>
                     <td>{{ $riwayat->user->name }}</td>
-                    <td>{{ $riwayat->pangkat->nama }}</td>
+                    <td>{{ $riwayat->rank->nama }}</td>
                     <td>{{ $riwayat->tmt }}</td>
                     <td>
                         <x-jet-secondary-button wire:click="export('{{ $riwayat->skpangkat }}')">
