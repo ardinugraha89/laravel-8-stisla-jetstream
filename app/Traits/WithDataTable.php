@@ -37,9 +37,13 @@ trait WithDataTable
                 break;
 
             case 'education':
-                $educations = $this->model::search($this->search)
-                    ->orderBy('tahun_lulus', $this->sortAsc ? 'desc' : 'asc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->is_admin) {
+                    $educations = $this->model::search($this->search)
+                        ->orderBy('tahun_lulus', $this->sortAsc ? 'desc' : 'asc')
+                        ->paginate($this->perPage);
+                } else {
+                    $educations = $this->model::where('user_id', '=', auth()->user()->id)->get();
+                }
 
                 return [
                     "view" => 'livewire.table.education',
@@ -122,9 +126,13 @@ trait WithDataTable
                 break;
 
             case 'riwayatjbt':
-                $riwayatjbt = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->is_admin) {
+                    $riwayatjbt = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                } else {
+                    $riwayatjbt = $this->model::where('user_id', '=', auth()->user()->id)->get();
+                }
 
                 return [
                     "view" => 'livewire.table.riwayatjbt',
@@ -139,9 +147,13 @@ trait WithDataTable
                 break;
 
             case 'riwayatpkt':
-                $riwayatpkt = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->is_admin) {
+                    $riwayatpkt = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                } else {
+                    $riwayatpkt = $this->model::where('user_id', '=', auth()->user()->id)->get();
+                }
 
                 return [
                     "view" => 'livewire.table.riwayatpkt',
@@ -156,9 +168,13 @@ trait WithDataTable
                 break;
 
             case 'kgb':
-                $kgb = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->is_admin) {
+                    $kgb = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                } else {
+                    $kgb = $this->model::where('user_id', '=', auth()->user()->id)->get();
+                }
 
                 return [
                     "view" => 'livewire.table.kgb',
@@ -173,9 +189,13 @@ trait WithDataTable
                 break;
 
             case 'mutasi':
-                $mutasi = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                    ->paginate($this->perPage);
+                if (Auth::user()->is_admin) {
+                    $mutasi = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                } else {
+                    $mutasi = $this->model::where('user_id', '=', auth()->user()->id)->get();
+                }
 
                 return [
                     "view" => 'livewire.table.mutasi',
