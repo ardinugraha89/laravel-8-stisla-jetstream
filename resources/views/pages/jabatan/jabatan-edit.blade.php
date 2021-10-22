@@ -10,6 +10,6 @@
     </x-slot>
 
     <div>
-        <livewire:add-pelatihan action="updateDataJabatan" :jabatanId="request()->jabatanId"/>
+        <livewire:add-jabatan action="updateDataJabatan" :jabatanId="request()->jabatanId"/>
     </div>
 </x-app-layout>
